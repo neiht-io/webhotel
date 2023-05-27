@@ -1,0 +1,84 @@
+﻿@model Hotel.Models.Room
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Room</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.RoomNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RoomNumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RoomImage)
+        </dt>
+
+        <dd>
+            @*<img src="~/Hinh/@Url.Content(Model.RoomImage)" height="200" width="200"/>*@
+            <img src="@Url.Content("~/Hinh/"+Model.RoomImage)" height="150" width="150" class="img-responsive" />
+
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RoomPrice)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RoomPrice)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RoomCapacity)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RoomCapacity)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RoomDescription)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RoomDescription)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IsActive)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsActive)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BookingStatu.BookingStatus)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BookingStatu.BookingStatus)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RoomType.RoomTypeName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RoomType.RoomTypeName)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.RoomId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

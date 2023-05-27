@@ -1,0 +1,160 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+
+    @{ var user = Session["User"] as Hotel.Models.User;
+        int? userId = Session["UserId"] as int?; }
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse" title="more options">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("HOTEL BOOKING", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+
+                    @{
+                        if (user != null)
+                        {
+
+                            if (user.RoleId == 1)
+
+                            {
+                             
+
+                                <li>@Html.ActionLink("Room", "Index", "Room")</li>
+                                <li>@Html.ActionLink("Booking", "Index", "Room_Booking")</li>
+                                <li>@Html.ActionLink("RoomType", "Index", "Room_Type")</li>
+                                <li>@Html.ActionLink("BookingStatus", "Index", "Booking_Status")</li>
+                                <li>@Html.ActionLink("Payment", "Index", "Payment")</li>
+                                <li>@Html.ActionLink("PaymentType", "Index", "Payment_Type")</li>
+
+
+                            }
+
+                            if (user.RoleId == 0)
+                            {
+
+                                <li>@Html.ActionLink("Danh sách phòng", "RoomList", "ClientHome")</li>
+                                <li>@Html.ActionLink("Tìm kiếm phòng", "SearchRooms", "ClientHome")</li>
+
+                                <li>@Html.ActionLink("Lịch sử", "BookingHistory", "ClientHome")</li>
+                            }
+
+
+
+                            <li class="hello"> <a style="color:#ffffff;padding: 6%" href="#"> </a>Hello:@user.UserId @user.FullName</li>
+                            <li>@Html.ActionLink("Logout", "Logout", "Home")</li>
+
+                        }
+
+                        else
+                        {
+
+                            <li>@Html.ActionLink("About", "About", "Home")</li>
+                            <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+
+                            <li>@Html.ActionLink("Login", "Login", "Home")</li>
+                            <li>@Html.ActionLink("Signup", "Signup", "Home")</li>
+
+                        }
+                    }
+
+
+
+
+
+
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>
+
+<style>
+    .navbar-nav > li {
+        float: left;
+        color: #ffff;
+    }
+
+    .navbar > .container .navbar-brand {
+        margin-left: -15px;
+        COLOR: #FFF;
+    }
+
+
+
+</style>
+
+
+@*<!DOCTYPE html>
+
+    <html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width" />
+        <title>@ViewBag.Title</title>
+    </head>
+
+
+    <body>
+        <span class="header-content">
+            @{
+                Html.RenderPartial("HeaderNavBar");
+            }
+        </span>
+        <div></div>
+
+
+
+
+        <span class="body-content">
+            @RenderBody()
+        </span>
+
+
+
+        <span class="footer-content">
+            @{
+                Html.RenderPartial("Footer");
+            }
+        </span>
+
+    </body>
+    </html>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            border: 0;
+            font-size: 100%;
+        }
+
+        ol, ul {
+            list-style: none;
+        }
+    </style>*@

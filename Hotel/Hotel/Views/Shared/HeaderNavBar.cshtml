@@ -1,0 +1,192 @@
+﻿@using Hotel.Models
+@model List<RoomType>
+
+<header id="header" class="site-header">
+    <div class="brandname">
+        @Html.ActionLink("HOTEL BOOKING", "Index", "Home")
+    </div>
+
+    <div class=" listnavbar ">
+
+        <li class="itemnabar">
+            <span> Room and Suite</span>
+            
+            <ul class="roomlist">
+                <li class="itemlist">@Html.ActionLink("Double Room", "DoubleRoom", "Home")</li>
+                <li class="itemlist">@Html.ActionLink("Double Room", "DoubleRoom", "Home")</li>
+                <li class="itemlist">@Html.ActionLink("Triple Room", "TripleRoom", "Home")</li>
+                <li class="itemlist">@Html.ActionLink("Suite Room", "SuiteRoom", "Home")</li>
+                <li class="itemlist">@Html.ActionLink("All Room", "AllRoom", "Home")</li>
+            </ul>
+            
+        </li>
+        <li class="itemnabar" style="color= white;">
+            @Html.ActionLink("Blog", "Index", "Blog")
+        </li>
+
+
+        <li class="itemnabar">
+            <span> About Us</span>
+            <ul class="roomlist">
+                <li class="itemlist">@Html.ActionLink("Introduce", "Introduce", "Home")</li>
+                <li class="itemlist">@Html.ActionLink("Contact", "Contact", "Home")</li>
+            </ul>
+        </li>
+        <li class="itemnabar">
+            @Html.ActionLink("MyBooking", "Index", "Home")
+        </li>
+        </li>
+
+
+    </div>
+
+    <div class="Login">
+        <div class="loginbtn">@Html.ActionLink("Login", "Login", "Home")</div>
+        <div class="signupbtn">@Html.ActionLink("SignUp", "SignUp", "Home")</div>
+
+    </div>
+    <div></div>
+
+</header>
+
+<style>
+
+
+    /*    * {
+        color: white;
+    }*/
+
+    a:-webkit-any-link {
+        color: #000000;
+        cursor: pointer;
+        text-decoration: none;
+    }
+
+    *li {
+        text-decoration: none;
+    }
+
+    #header {
+        max-width: 100%;
+        right: 0;
+        left: 0;
+        position: absolute;
+        display: flex;
+        align-items: center;
+        padding: 20px;
+        background-color: #ffffff;
+        box-shadow: 0 2px 0px rgba(0, 0, 0, 0.1);
+    }
+
+    .brandname a {
+        color: #000000;
+        font-size: 24px;
+        font-weight: bold;
+        text-decoration: none;
+    }
+
+    .listnavbar {
+        display: flex;
+        align-items: center;
+        padding-left: 20%;
+    }
+
+    .itemnabar {
+        padding: 20px;
+        list-style-type: none;
+        font-size: 20px;
+    }
+
+        .itemnabar p {
+            margin: 0;
+            font-size: 1px;
+            font-weight: bold;
+            color: #000000;
+            text-transform: uppercase;
+            cursor: pointer;
+        }
+
+        .itemnabar a {
+            text-decoration: none;
+        }
+
+
+
+    .roomlist {
+        display: none;
+        /*display: block;*/
+        position: absolute;
+        background-color: #ffffff;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        list-style-type: none;
+        margin: 0;
+        z-index: 1;
+        padding-left: 0px;
+        list-style-type: none;
+        margin: 0;
+        z-index: 99999;
+        top: 112px;
+        float: left;
+        color: #5f6060;
+        transition: all .3s ease;
+    }
+
+    .itemnabar span::after {
+        content: "";
+        display: block;
+        width: 110px;
+        height: 93px;
+        /*       background-color:aqua;*/
+        /*     visibility:hidden;*/
+        position: absolute;
+        top: 42%;
+        z-index: 1;
+    }
+
+    .itemlist {
+        margin-bottom: 5px;
+        text-decoration: none;
+        width: 200px;
+        font-size: 14px;
+        font-size: .875rem;
+        padding: 1rem 1.875rem;
+        border-bottom: 1px solid #f0f1f1;
+        font-size: 20px;
+    }
+
+    .itemnabar:hover .roomlist,
+    .itemnabar:hover .aboutuslits {
+        display: block;
+    }
+
+        .itemlist:hover, .itemnabar:hover .roomlist li:hover a:-webkit-any-link {
+            color: #ffffff;
+            background: #252e59;
+            border-color: transparent;
+        }
+
+    .itemnabar:hover, .itemnabar a:hover, .itemnabar a:-webkit-any-link:hover {
+        color: #ffffff;
+        background: #252e59;
+        border-color: transparent;
+        border-radius: 4px;
+    }
+
+    .Login {
+        display: flex;
+        align-items: center;
+        padding-left: 20px;
+    }
+
+    .loginbtn,
+    .signupbtn {
+        margin-left: 20px;
+        padding: 8px 15px;
+        background-color: #7ea2c8;
+        color: #ffffff;
+        font-size: 16px;
+        font-weight: bold;
+        text-decoration: none;
+        border-radius: 4px;
+    }
+</style>

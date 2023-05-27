@@ -1,0 +1,79 @@
+﻿@model IEnumerable<Hotel.ViewModel.RoomDetailsViewModel>
+
+@{
+    ViewBag.Title = "Index";
+}
+<div>
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.RoomNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RoomImage)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RoomPrice)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RoomCapacity)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RoomDescription)
+        </th>
+        @*<th>
+            @Html.DisplayNameFor(model => model.IsActive)
+        </th>*@
+        <th>
+            @Html.DisplayNameFor(model => model.BookingStatus)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RoomType)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.RoomNumber)
+        </td>
+        <td>
+            <img src="@Url.Content("~/Hinh/"+item.RoomImage)" height="50" width="50" class="img-responsive"/>
+        </td>
+        <td>
+            @item.RoomPrice.ToString("#,##0.00")
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.RoomCapacity)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.RoomDescription)
+        </td>
+        @*<td>
+            @Html.DisplayFor(modelItem => item.IsActive)
+        </td>*@
+        <td>
+            @Html.DisplayFor(modelItem => item.BookingStatus)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.RoomType)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.RoomId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.RoomId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.RoomId })
+        </td>
+    </tr>
+}
+
+</table>
+</div>
+
+

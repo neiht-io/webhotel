@@ -1,0 +1,39 @@
+﻿<h2>RoomList</h2>
+
+@model List<Hotel.Areas.Client.Models.RoomViewModelCL>
+
+@{
+    ViewBag.Title = "Room List";
+}
+
+<h2>Room List</h2>
+
+<table class="table">
+    <th>Hình</th>
+    <th>Số phòng</th>
+    <th>Giá phòng</th>
+    <th>Loại phòng</th>
+    </tr>
+    @foreach (var room in Model)
+    {
+        <tr>
+            <th>
+                <img src="~/Hinh/@room.RoomImage" class="card-img-top" alt="Room Image" style="height:100px;width:150px">
+            </th>
+            <th>
+                <h3>@room.RoomNumber</h3>
+            </th>
+            <th>
+                @room.RoomPrice
+            </th>
+            <th>
+                @room.RoomTypeName
+            </th>
+            <th>
+                <a href="@Url.Action("BookRoom", new { id = room.RoomId })" class="btn btn-primary">Book Room</a>
+            </th>
+        </tr>
+
+    }
+</table>
+

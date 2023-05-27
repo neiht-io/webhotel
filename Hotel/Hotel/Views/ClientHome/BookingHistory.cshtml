@@ -1,0 +1,34 @@
+﻿@model List<Hotel.Models.RoomBooking>
+
+@{
+    ViewBag.Title = "Booking History";
+}
+
+<h2>Booking History</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Booking ID</th>
+            <th>Customer Name</th>
+            <th>Booking From</th>
+            <th>Booking To</th>
+            <th>Room Number</th>
+            <th>Total</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var booking in Model)
+        {
+            <tr>
+                <td>@booking.BookingId</td>
+                <td>@booking.CustomerName</td>
+                <td>@booking.BookingFrom</td>
+                <td>@booking.BookingTo</td>
+                <td>@booking.Room.RoomNumber</td>
+                <td>@booking.Total</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
