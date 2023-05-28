@@ -126,7 +126,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Users__RoleId__4F7CD00D">
+  <Association Name="FK__Users__RoleId__29572725">
     <End Role="RoleUsers" Type="Self.RoleUsers" Multiplicity="1" />
     <End Role="Users" Type="Self.Users" Multiplicity="*" />
     <ReferentialConstraint>
@@ -135,30 +135,6 @@
       </Principal>
       <Dependent Role="Users">
         <PropertyRef Name="RoleId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_RoomBooking_PaymentType">
-    <End Role="PaymentType" Type="Self.PaymentType" Multiplicity="1" />
-    <End Role="RoomBooking" Type="Self.RoomBooking" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="PaymentType">
-        <PropertyRef Name="PaymentTypeId" />
-      </Principal>
-      <Dependent Role="RoomBooking">
-        <PropertyRef Name="PaymentTypeId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_RoomBooking_Room">
-    <End Role="Room" Type="Self.Room" Multiplicity="1" />
-    <End Role="RoomBooking" Type="Self.RoomBooking" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Room">
-        <PropertyRef Name="RoomId" />
-      </Principal>
-      <Dependent Role="RoomBooking">
-        <PropertyRef Name="RoomId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -196,17 +172,9 @@
       <End Role="RoomType" EntitySet="RoomType" />
       <End Role="Room" EntitySet="Room" />
     </AssociationSet>
-    <AssociationSet Name="FK__Users__RoleId__4F7CD00D" Association="Self.FK__Users__RoleId__4F7CD00D">
+    <AssociationSet Name="FK__Users__RoleId__29572725" Association="Self.FK__Users__RoleId__29572725">
       <End Role="RoleUsers" EntitySet="RoleUsers" />
       <End Role="Users" EntitySet="Users" />
-    </AssociationSet>
-    <AssociationSet Name="FK_RoomBooking_PaymentType" Association="Self.FK_RoomBooking_PaymentType">
-      <End Role="PaymentType" EntitySet="PaymentType" />
-      <End Role="RoomBooking" EntitySet="RoomBooking" />
-    </AssociationSet>
-    <AssociationSet Name="FK_RoomBooking_Room" Association="Self.FK_RoomBooking_Room">
-      <End Role="Room" EntitySet="Room" />
-      <End Role="RoomBooking" EntitySet="RoomBooking" />
     </AssociationSet>
     <AssociationSet Name="FK_RoomBooking_Users" Association="Self.FK_RoomBooking_Users">
       <End Role="Users" EntitySet="Users" />

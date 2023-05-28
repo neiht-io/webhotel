@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="HotelModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="HotelModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="BookingStatus">
           <Key>
             <PropertyRef Name="BookingStatusId" />
@@ -131,7 +131,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Users__RoleId__4F7CD00D">
+        <Association Name="FK__Users__RoleId__29572725">
           <End Role="RoleUsers" Type="Self.RoleUsers" Multiplicity="1" />
           <End Role="Users" Type="Self.Users" Multiplicity="*" />
           <ReferentialConstraint>
@@ -140,30 +140,6 @@
             </Principal>
             <Dependent Role="Users">
               <PropertyRef Name="RoleId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_RoomBooking_PaymentType">
-          <End Role="PaymentType" Type="Self.PaymentType" Multiplicity="1" />
-          <End Role="RoomBooking" Type="Self.RoomBooking" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="PaymentType">
-              <PropertyRef Name="PaymentTypeId" />
-            </Principal>
-            <Dependent Role="RoomBooking">
-              <PropertyRef Name="PaymentTypeId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_RoomBooking_Room">
-          <End Role="Room" Type="Self.Room" Multiplicity="1" />
-          <End Role="RoomBooking" Type="Self.RoomBooking" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Room">
-              <PropertyRef Name="RoomId" />
-            </Principal>
-            <Dependent Role="RoomBooking">
-              <PropertyRef Name="RoomId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -201,25 +177,16 @@
             <End Role="RoomType" EntitySet="RoomType" />
             <End Role="Room" EntitySet="Room" />
           </AssociationSet>
-          <AssociationSet Name="FK__Users__RoleId__4F7CD00D" Association="Self.FK__Users__RoleId__4F7CD00D">
+          <AssociationSet Name="FK__Users__RoleId__29572725" Association="Self.FK__Users__RoleId__29572725">
             <End Role="RoleUsers" EntitySet="RoleUsers" />
             <End Role="Users" EntitySet="Users" />
-          </AssociationSet>
-          <AssociationSet Name="FK_RoomBooking_PaymentType" Association="Self.FK_RoomBooking_PaymentType">
-            <End Role="PaymentType" EntitySet="PaymentType" />
-            <End Role="RoomBooking" EntitySet="RoomBooking" />
-          </AssociationSet>
-          <AssociationSet Name="FK_RoomBooking_Room" Association="Self.FK_RoomBooking_Room">
-            <End Role="Room" EntitySet="Room" />
-            <End Role="RoomBooking" EntitySet="RoomBooking" />
           </AssociationSet>
           <AssociationSet Name="FK_RoomBooking_Users" Association="Self.FK_RoomBooking_Users">
             <End Role="Users" EntitySet="Users" />
             <End Role="RoomBooking" EntitySet="RoomBooking" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="HotelModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
