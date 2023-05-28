@@ -37,7 +37,7 @@ namespace Hotel.Areas.Client.Controllers
                     RoomTypeName = roomType.RoomTypeName,
                     RoomCapacity = r.RoomCapacity,
                     RoomDescription = r.RoomDescription
-                    
+
                 }).ToList();
 
                 roomViewModels.AddRange(roomVMs);
@@ -54,18 +54,15 @@ namespace Hotel.Areas.Client.Controllers
 
         // POST: Client/Home/SearchRooms
         [HttpPost]
-        public ActionResult SearchRooms(BookingViewModelCL searchViewModel)
+        public ActionResult SearchRooms(BookingViewModelCL bvm)
         {
-            var bookingFrom = searchViewModel.BookingFrom.Date;
-            var bookingTo = searchViewModel.BookingTo.Date.AddDays(1).AddTicks(-1);
-            var noOfMember = searchViewModel.NoOfMember;
 
             var availableRooms = db.Rooms.Where(r =>
                 r.IsActive &&
+                r.RoomCapacity >= bvm.NoOfMember &&
                 r.RoomBookings.All(rb =>
-                    (bookingFrom >= rb.BookingTo || bookingTo <= rb.BookingFrom) &&
-                    (bookingFrom >= rb.BookingTo || bookingTo <= rb.BookingFrom) &&
-                    noOfMember <= r.RoomCapacity
+                    (bvm.BookingFrom >= rb.BookingTo || bvm.BookingTo <= rb.BookingFrom) &&
+                    (bvm.BookingFrom >= rb.BookingTo || bvm.BookingTo <= rb.BookingFrom)
                 )
             ).ToList();
 
@@ -75,7 +72,9 @@ namespace Hotel.Areas.Client.Controllers
                 RoomNumber = r.RoomNumber,
                 RoomImage = r.RoomImage,
                 RoomPrice = r.RoomPrice,
-                RoomTypeName = r.RoomType.RoomTypeName
+                RoomTypeName = r.RoomType.RoomTypeName,
+                RoomCapacity = r.RoomCapacity,
+                RoomDescription = r.RoomDescription
             }).ToList();
 
             return PartialView("_RoomList", roomViewModels);
@@ -120,11 +119,22 @@ namespace Hotel.Areas.Client.Controllers
                     ModelState.AddModelError(string.Empty, "Phòng đã có người đặt trong khoảng thời gian này. Vui lòng chọn phòng khác.");
                     return View(bookingViewModel);
                 }
+                // Kiểm tra người dùng nhập ngày đi > đến 
+                if (bookingViewModel.BookingFrom > bookingViewModel.BookingTo)
+                {
+                    ModelState.AddModelError(string.Empty, "Ngày đặt phòng không hợp lệ. Vui lòng chọn lại.");
+                    return View(bookingViewModel);
+                }
 
                 int? userId = Session["UserId"] as int?;// Session điều kiện 
+
+                // Checkin 14h và Checkout 12h hôm sau
+                bookingViewModel.BookingFrom = bookingViewModel.BookingFrom.Date.AddHours(14);
+                bookingViewModel.BookingTo = bookingViewModel.BookingTo.Date.AddHours(12);
+
                 int numOfDays = Convert.ToInt32((bookingViewModel.BookingTo - bookingViewModel.BookingFrom).TotalDays);
                 var booking = new RoomBooking
-                {   
+                {
                     UserId = (int)Session["UserId"], //Vì đăng nhập là có Id nên là không càn phải so sánh
                     CustomerName = bookingViewModel.CustomerName,
                     CustomerAddress = bookingViewModel.CustomerAddress,
@@ -134,7 +144,7 @@ namespace Hotel.Areas.Client.Controllers
                     RoomId = bookingViewModel.RoomId,
                     NoOfMember = bookingViewModel.NoOfMember,
                     Total = room.RoomPrice * numOfDays,
-                    PaymentTypeId = 1 // Change this to the appropriate PaymentTypeId based on your data
+                    PaymentTypeId = 1
                 };
 
                 db.RoomBookings.Add(booking);
@@ -148,12 +158,15 @@ namespace Hotel.Areas.Client.Controllers
 
         private bool IsRoomAvailable(int roomId, DateTime bookingFrom, DateTime bookingTo)
         {
-            var existingBooking = db.RoomBookings.FirstOrDefault(r =>
-                r.RoomId == roomId &&
-                ((bookingFrom >= r.BookingFrom && bookingFrom <= r.BookingTo) ||
-                 (bookingTo >= r.BookingFrom && bookingTo <= r.BookingTo)));
+            var checkBooking = db.RoomBookings
+                    .Where(r =>
+                            r.RoomId == roomId &&
+                            ((bookingFrom >= r.BookingFrom && bookingFrom < r.BookingTo) ||
+                            (bookingTo > r.BookingFrom && bookingTo <= r.BookingTo) ||
+                            (bookingFrom <= r.BookingFrom && bookingTo >= r.BookingTo)))
+                            .ToList();
 
-            return existingBooking == null;
+            return checkBooking.Count == 0;
         }
 
 
@@ -173,19 +186,29 @@ namespace Hotel.Areas.Client.Controllers
         // GET: Client/Home/BookingHistory
         public ActionResult BookingHistory()
         {
-            var bookings = db.RoomBookings.Select(ur => ur.UserId).ToList();
-              
+            // Lấy UserId của người dùng từ Session
+            int getUserId = (int)Session["UserId"];
+
+            var bookings = db.RoomBookings
+                .Where(r => r.UserId == getUserId).ToList();
 
             return View(bookings);
+        }
 
-            //var roomViewModels = availableRooms.Select(r => new RoomViewModelCL
-            //{
-            //    RoomId = r.RoomId,
-            //    RoomNumber = r.RoomNumber,
-            //    RoomImage = r.RoomImage,
-            //    RoomPrice = r.RoomPrice,
-            //    RoomTypeName = r.RoomType.RoomTypeName
-            //}).ToList();
+        public ActionResult CancelBooking(int id)
+        {
+
+            var booking = db.RoomBookings.Find(id);
+
+            if (booking == null)
+            {
+                return HttpNotFound();
+            }
+
+            db.RoomBookings.Remove(booking);
+            db.SaveChanges();
+
+            return RedirectToAction("BookingHistory");
         }
 
         protected override void Dispose(bool disposing)

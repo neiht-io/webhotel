@@ -131,7 +131,6 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="ControllerClient\ClientHomeController.cs" />
     <Compile Include="Controllers\Booking_StatusController.cs" />
-    <Compile Include="Controllers\ClientController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PaymentController.cs" />
     <Compile Include="Controllers\Payment_TypeController.cs" />
@@ -328,7 +327,6 @@
     <Content Include="Views\Payment_Type\Details.cshtml" />
     <Content Include="Views\Payment_Type\Edit.cshtml" />
     <Content Include="Views\Payment_Type\Index.cshtml" />
-    <Content Include="Views\Client\Home.cshtml" />
     <Content Include="Views\Room_Booking\Delete.cshtml" />
     <Content Include="Views\Room_Booking\Details.cshtml" />
     <Content Include="Views\Room_Booking\Edit.cshtml" />
@@ -336,8 +334,6 @@
     <Content Include="Views\Room_Booking\SearchRoom.cshtml" />
     <Content Include="Views\Shared\Footer.cshtml" />
     <Content Include="Views\Shared\HeaderNavBar.cshtml" />
-    <Content Include="Views\Client\SelectRoomType.cshtml" />
-    <Content Include="Views\Client\SelectRoomsByType.cshtml" />
     <Content Include="Views\Home\Signup.cshtml" />
     <Content Include="Views\Home\Login.cshtml" />
     <Content Include="Views\ClientHome\RoomList.cshtml" />

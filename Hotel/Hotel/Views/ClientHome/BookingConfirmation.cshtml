@@ -1,19 +1,18 @@
 ﻿@model Hotel.Models.RoomBooking
 
 @{
-    ViewBag.Title = "Booking Confirmation";
+    ViewBag.Title = "Đạt phòng thành công";
 }
 
-<h2>Booking Confirmation</h2>
+<h2>Thông tin đặt phòng</h2>
 
 <div>
-    <h3>Booking Information</h3>
-    <p>Customer Name: @Model.CustomerName</p>
-    <p>Customer Address: @Model.CustomerAddress</p>
-    <p>Customer Phone: @Model.CustomerPhone</p>
-    <p>Booking From: @Model.BookingFrom</p>
-    <p>Booking To: @Model.BookingTo</p>
-    <p>Total: @Model.Total</p>
+    <p>Họ và tên: @Model.CustomerName</p>
+    <p>Địa chỉ: @Model.CustomerAddress</p>
+    <p>Số điện thoại: @Model.CustomerPhone</p>
+    <p>Từ ngày: @Model.BookingFrom</p>
+    <p>Đến ngày: @Model.BookingTo</p>
+    <p>Thành tiền: @Model.Total</p>
 </div>
 
 <div>
